@@ -3,6 +3,7 @@ package org.example.model;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.validator.internal.util.stereotypes.Lazy;
 
 import java.time.LocalDateTime;
 
@@ -24,4 +25,8 @@ public class CardEntity {
     private LocalDateTime updatedAt;
     @Column(name = "deleted_at")
     private LocalDateTime deletedAt;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "card_name",insertable = false, updatable = false)
+    private UserEntity entity;
 }
